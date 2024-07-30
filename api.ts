@@ -7189,35 +7189,36 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @throws {RequiredError}
          */
         verify2FA: async (twoFactorAuthCode: TwoFactorAuthCode, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'twoFactorAuthCode' is not null or undefined
-            assertParamExists('verify2FA', 'twoFactorAuthCode', twoFactorAuthCode)
-            const localVarPath = `/auth/twofactorauth/totp/verify`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication authCookie required
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(twoFactorAuthCode, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+             // verify required parameter 'verify2FA' is not null or undefined
+             assertParamExists('verify2FA', 'twoFactorAuthCode', twoFactorAuthCode);
+             const localVarPath = `/auth/twofactorauth/totp/verify`;
+             // use dummy base URL string because the URL constructor only accepts absolute URLs.
+             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+             let baseOptions;
+             if (configuration) {
+                 baseOptions = configuration.baseOptions;
+             }
+ 
+             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+             const localVarHeaderParameter = {} as any;
+             const localVarQueryParameter = {} as any;
+ 
+             // authentication authCookie required
+             localVarHeaderParameter['Content-Type'] = 'application/json';
+ 
+             setSearchParams(localVarUrlObj, localVarQueryParameter);
+             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+ 
+             // Nest the code within an object
+             localVarRequestOptions.data = {
+                 code: serializeDataIfNeeded(twoFactorAuthCode.code, localVarRequestOptions, configuration)
+             };
+ 
+             return {
+                 url: toPathString(localVarUrlObj),
+                 options: localVarRequestOptions,
+             };
         },
         /**
          * Finishes the login sequence with an 2FA email code.
@@ -7297,9 +7298,9 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @throws {RequiredError}
          */
         verifyRecoveryCode: async (twoFactorAuthCode: TwoFactorAuthCode, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-             // verify required parameter 'twoFactorAuthCode' is not null or undefined
-            assertParamExists('verify2FA', 'twoFactorAuthCode', twoFactorAuthCode);
-            const localVarPath = `/auth/twofactorauth/totp/verify`;
+           // verify required parameter 'twoFactorAuthCode' is not null or undefined
+           assertParamExists('verifyRecoveryCode', 'twoFactorAuthCode', twoFactorAuthCode)
+           const localVarPath = `/auth/twofactorauth/otp/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7316,12 +7317,8 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-
-            // Nest the code within an object
-            localVarRequestOptions.data = {
-                code: serializeDataIfNeeded(twoFactorAuthCode.code, localVarRequestOptions, configuration)
-            };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(twoFactorAuthCode, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
