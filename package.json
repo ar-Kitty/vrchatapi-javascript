@@ -24,9 +24,9 @@
   "dependencies": {
     "@types/tough-cookie": "^4.0.1",
     "axios": "^1.7.2",
-    "axios-cookiejar-support": "^1.0.1",
+    "axios-cookiejar-support": "^5.0.2",
     "totp-generator": "^1.0.0",
-    "tough-cookie": "^4.0.0"
+    "tough-cookie": "^4.1.4"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
