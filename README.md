@@ -4,6 +4,8 @@
 
 A JavaScript/TypeScript/NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in the [API specification](https://github.com/vrchatapi/specification).
 
+This is a Foked Version with some Addons and Support for more Features.
+
 ## Disclaimer
 
 This is the official response of the VRChat Team (from Tupper more specifically) on the usage of the VRChat API.
@@ -18,64 +20,33 @@ As stated, this documentation was not created with the help of the official VRCh
 
 ## Getting Started
 
-First add the package to to your project:
-```bash
-npm install vrchat
-```
-
-Below is an example on how to login to the API and fetch your own user information.
-
-```javascript
-// Step 1. We begin with creating a Configuration, which contains the username and password for authentication.
-const vrchat = require("vrchat");
-const configuration = new vrchat.Configuration({
-    username: "username",
-    password: "password"
-});
-
-// Step 2. VRChat consists of several API's (WorldsApi, UsersApi, FilesApi, NotificationsApi, FriendsApi, etc...)
-// Here we instantiate the Authentication API which is required for logging in.
-const AuthenticationApi = new vrchat.AuthenticationApi(configuration);
-
-// Step 3. Calling getCurrentUser on Authentication API logs you in if the user isn't already logged in.
-AuthenticationApi.getCurrentUser().then(resp => {
-    const currentUser = resp.data;
-    console.log(`Logged in as: ${currentUser.displayName}`);
-});
-```
-
-See [example.js](https://github.com/vrchatapi/vrchatapi-javascript/blob/master/example.js) for more example usage on getting started.
-
-
-## Getting Started with TypeScript
-
 below is an example on how to logon to the API and fetch your own user information.
 
 ```typescript
-import axios, { AxiosInstance } from 'axios'; // Header Instance for VRChat
-import * as VRChat from 'vrchat';             
+         
+  const configuation = new VRChat.Configuration({
+      username: "username",
+      password: "password"
+  });
 
-const configuation = new VRChat.Configuration({
-    username: "username",
-    password: "password"
-});
 
-const axiosInstance: AxiosInstance = axios.create({
-  headers: {
-    'User-Agent': 'Softwarename/1.0.0.0 email@adress'
-  }
-}); 
 
-const AuthenticationApi = new VRChat.AuthenticationApi(configuation, undefined, axiosInstance).verify2FA({code: "otp"}); //Use TOTP to get the code from the Base32
-
-const CurrentUserObject = await AuthenticationApi.getCurrentUser();
-const currentUser = CurrentUserObject.data;
-console.log(`Logged in as: ${currentUser.displayName}`);
+  const axiosInstance = VRChat.VRChatHead("NONELIST/1.0.0.0 support@v-e.cc");
+  const AuthenticationApi = new VRChat.AuthenticationApi(configuation, undefined, axiosInstance);
+  const CurrentUser = await AuthenticationApi.getCurrentUser()
+  
+  if(!CurrentUser.data.displayName) {
+    const totpCode = VRChat.GenerateTOTP();
+    await AuthenticationApi.verify2FA({ code: totpCode.code });
+  } 
+  
+  const CurrentUserObject = await AuthenticationApi.getCurrentUser();
+  const currentUser = CurrentUserObject.data;
+  console.log(`Logged in as: ${currentUser.displayName}`);
+  
 
 ```
 
 ## Contributing
 
-Contributions are welcome, but do not add features that should be handled by the OpenAPI specification.
-
-Join the [Discord server](https://discord.gg/Ge2APMhPfD) to get in touch with us.
+Contributions are welcome.

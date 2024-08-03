@@ -1,11 +1,11 @@
 {
-  "name": "vrchat",
-  "version": "1.18.2",
-  "description": "🟡🔵 VRChat API Library for JavaScript and TypeScript",
+  "name": "vrchat-extended",
+  "version": "1.0.0",
+  "description": "🟡🔵 VRChat API Library extended for JavaScript and TypeScript",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vrchatapi/vrchatapi-javascript.git"
+    "url": "https://github.com/ar-Kitty/vrchatapi-javascript-extended.git"
   },
   "keywords": [
     "axios",
