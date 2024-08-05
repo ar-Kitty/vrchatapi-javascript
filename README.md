@@ -35,7 +35,7 @@ below is an example on how to logon to the API and fetch your own user informati
 
 
 
-  const axiosInstance = VRChat.VRChatHead("NONELIST/1.0.0.0 support@v-e.cc");
+  const axiosInstance = VRChat.VRChatHead("SOFTWARE/1.0.0.0 email@domain");
   const AuthenticationApi = new VRChat.AuthenticationApi(configuation, undefined, axiosInstance);
   const CurrentUser = await AuthenticationApi.getCurrentUser()
   
