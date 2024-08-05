@@ -20,6 +20,10 @@ As stated, this documentation was not created with the help of the official VRCh
 
 ## Getting Started
 
+```bash
+npm i vrchat-extended
+```
+
 below is an example on how to logon to the API and fetch your own user information.
 
 ```typescript
